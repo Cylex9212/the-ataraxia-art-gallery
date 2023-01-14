@@ -1,0 +1,40 @@
+html(lang="en")
+    head
+        title Search Results
+    body
+        if session && session.loggedin
+            -let url
+            -let description 
+            -let name
+            -let i = 0
+
+            include ../partials/topBar
+            link(rel='stylesheet', href='/artworkStyles.css')
+
+            div#main
+
+                each art, index in artworks
+                    -url = art.url
+                    -name = art.name
+
+                    a(href="/artworks/" + art._id)
+                        img#galleryImage(src=url alt=name)
+                    |
+                    |
+                    
+                    -i++
+                
+                br
+                br
+
+                if currPage > 1
+                    a(href= searchURL + (currPage - 1)) Previous
+                    |
+                    |
+
+                if i >= 15
+                    a(href= searchURL + (currPage + 1)) Next
+
+                p Website made by Usman Iftikhar (CUID 101241220)
+        else 
+            p Strange... You aren't supposed to be here...

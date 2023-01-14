@@ -1,0 +1,28 @@
+html(lang="en")
+    head
+        title Search Results
+    body
+        if session && session.loggedin
+            -let url
+            -let description 
+            -let name
+            -let index = 1
+
+            include ../partials/topBar
+            link(rel='stylesheet', href='/artworkStyles.css')
+
+            div#main
+
+                h3 Results:
+
+                each user in users
+                    a(href="/users/" + user.username)= index + ". " + user.username
+                    - index++
+                    br
+                
+                br
+                br
+
+                p Website made by Usman Iftikhar (CUID 101241220)
+        else 
+        p Strange... You aren't supposed to be here...

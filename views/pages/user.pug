@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+    head
+        title=user.username + " - The Ataraxia"
+    body(onload="setNumOfFollows()")
+        link(rel='stylesheet', href='/artworkStyles.css')
+        include ../partials/topBar
+
+            if session && session.loggedin
+                input#username(type="hidden" value=user.username)
+                input#numOfFollows(type="hidden" value=user.followers)
+
+                
+                script(type='text/javascript', src='/client.js')
+
+                div#main
+                    h1=user.username + " "
+                    p#followsText= "Followers: " + user.followers
+                    |
+                    |
+
+                    if session.username != user.username
+                        if followed
+                            button#followButton(type="button" width= "20" onclick= "toggleFollow()" value="Unfollow") Unfollow
+                        else
+                            button#followButton(type="button" width= "20" onclick= "toggleFollow()" value="Follow") Follow
+                    else 
+                        a(href= '/accountInfo') Account Settings
+
+                    br
+                    br
+
+                    if artworks != null 
+                        h3 Artworks:
+                        each art in artworks
+                            -url = art.url
+                            -name = art.name
+                            
+                            a(href="/artworks/" + art._id)
+                                img#galleryImage(src=url alt=name)
+                            |
+                            |

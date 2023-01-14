@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+    head
+        title=user.username + " - Account Information"
+    body
+        script(type='text/javascript', src='/accInfo.js')
+        link(rel='stylesheet', href='/artworkStyles.css')
+
+        include ../partials/topBar
+
+        div#main
+            h1=user.username + "'s Profile"
+            
+            //-Drop Down Menu for Artist and User Selection
+            span User Status:   
+                select#userCategories(name="UserCategories")
+                    option(value="User")="User"
+                    option(value="Artist")="Artist"           
+            br
+            br
+            span Username:   
+                input#usernameBox(type="textbox" size="20" value= user.username)
+            br
+            br
+            span Password:   
+                input#passwordBox(type="textbox" size="20" value= user.password)
+            br
+            br
+
+            -let currUser
+            -let followedUsersList = user.following
+
+            if user.following.length > 0
+                h3 Following: 
+
+                each followedUser, index in followedUsersList
+                    a(href= "/users/" + followedUser)= (index+1) + ". " + followedUser
+                    br
+                    
+            br
+
+            button#saveButton(type="button" width= "20" onclick= "saveUserInfo()") Save
+            

@@ -1,0 +1,36 @@
+script(type='text/javascript', src='/client.js')
+link(rel='stylesheet', href='/barStyles.css')
+
+select#searchCategories(name="searchCategories")
+    option(value="User")="User"
+    option(value="Artwork")="Artwork"
+    option(value="Category")="Category"  
+    option(value="Medium")="Medium"            
+|
+|
+
+input#searchBox(type="textbox" size="50" value= "Search for artwork...")
+|
+|
+
+button#searchButton(type="button" onclick= "searchArtwork()") Search!
+|
+|
+
+a(href="/accountInfo")
+    button#accountInfo(type="button" width= "20") Account Information
+|
+|
+if session.artist
+    a(href="/artworks/upload")
+        button#postArt(type="button" width= "20") Post Artwork
+    |
+    |
+
+a(href="/logout")
+    button#logout(type="button" width= "20") Logout
+    
+div#logoDIV
+    a(href= "/")
+        img#logoImage(src = 'https://i.imgur.com/YINIsgM.png')
+p#sloganText We're going to take back what's ours

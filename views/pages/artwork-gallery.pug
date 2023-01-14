@@ -1,0 +1,52 @@
+//- Loop over all image objects in the provided object
+//- Add space between each image
+
+html(lang="en")
+    head
+        title Main Page
+    body
+        br
+
+        if session && session.loggedin
+            -let url
+            -let description 
+            -let name
+            -let index = 0
+
+            include ../partials/topBar
+            link(rel='stylesheet', href='/artworkStyles.css')
+
+            div#main
+                br
+                p#userName= "Welcome, " + session.username
+
+                h3 Illustrations:
+
+                each art in artworks
+                    -url = art.url
+                    -name = art.name
+
+                    a(href="/artworks/" + art._id)
+                        img#galleryImage(src=url alt=name)
+                    |
+                    |
+
+                    -index++
+                
+                br
+                br
+
+                if currPage > 1
+                    a(href="/artworks/pages/" + (currPage - 1)) Previous
+                    |
+                    |
+
+                if index >= 10
+                    a(href="/artworks/pages/" + (currPage + 1)) Next
+
+                p Website made by Usman Iftikhar (CUID 101241220)
+
+                br
+                br
+        else 
+            p Strange... You aren't supposed to be here...

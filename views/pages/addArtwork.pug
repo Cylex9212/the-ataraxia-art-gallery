@@ -1,0 +1,39 @@
+html 
+    head
+        title Post Artwork
+
+    body
+        include ../partials/topBar
+        script(type='text/javascript', src='/client.js')
+        link(rel='stylesheet', href='/artworkStyles.css')
+        
+        div#main 
+            h2 Post Artwork
+
+            input#username(type="hidden" value=session.username)
+
+            p Name:
+                |
+                |
+                input#name(type="textbox" size="25")
+            p Year Created:
+                |
+                |
+                input#creationDate(type="textbox" size="25")
+            p Category:
+                |
+                |
+                input#category(type="textbox" size="25")
+            p Medium:
+                |
+                |
+                input#medium(type="textbox" size="25")
+            p Description:
+                |
+                |
+                input#description(type="textbox" size="25")
+            p Artwork URL:
+                |
+                |
+                input#url(type="textbox" size="25")
+            button#addArtworkButton(type="button" onclick= "addArtwork()") Post

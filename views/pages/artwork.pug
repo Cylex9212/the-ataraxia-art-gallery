@@ -1,0 +1,88 @@
+html(lang="en")
+    head
+        title= artwork.name 
+    body(onload= "setNumOfLikes()")
+        script(type='text/javascript', src='/client.js')
+        link(rel='stylesheet', href='/artworkStyles.css')
+
+        include ../partials/topBar
+
+        //- Hidden information that will be used for the like button's functionality
+        input#artworkName(type="hidden" value=artwork.name)
+        input#artworkID(type="hidden" value= artwork._id)
+        input#numOfLikes(type="hidden" value=artwork.likes)
+
+        if session && session.loggedin
+            div#main
+                //- Artist Information:
+                div#artistInfo
+                    span Artist:
+                        a(href="/users/" + artwork.artist)= artwork.artist
+
+                //- New Code:
+                -let url = artwork.url
+                -let name = artwork.name 
+                -let description = artwork.description
+                -let category = artwork.category
+                -let medium = artwork.medium
+                -let likes = artwork.likes
+
+                a(href=url)
+                    img#mainImage(src=url alt=name)
+
+                br
+                br
+
+                //- Image Information:
+                div#imageInfo
+                    //- If liked = false, then make a button with value like
+                    //- Else, make it an unlike
+
+                    if session.username != artwork.artist
+                        if liked 
+                            button#likeButton(type="button" width= "20" onclick= "toggleLike()" value="Unlike") Unlike
+                        else
+                            button#likeButton(type="button" width= "20" onclick= "toggleLike()" value="Like") Like                   
+                    br
+                    br
+
+                    h3= name 
+                    p#likesText= "Likes: " + likes
+                    p= description
+                    a(href= '/search/Medium/' + medium + '/1')
+                        p= "#" + medium
+                    a(href= '/search/Category/' + category + '/1')
+                        p= "#" + category
+                
+                div#commentSection
+                    p Add a comment:
+                    |
+                    |
+                    textarea#commentBox(maxlength="500" tabindex="100" value="" rows="10" cols="100")
+
+                    br
+                    br
+
+                    button#submitCommentButton(type="button" width= "20" onclick= "submitComment()") Submit
+
+                    br
+
+                    if comments != null 
+
+                        h2 Comments:
+
+                        each comment in comments
+                            h3= comment.username + ":"
+                            span#commentText= "       " + comment.comment
+                            |
+                            |
+                            //-if session.username === comment.username
+                                //-button#deleteCommentButton(type="button" width= "20" onclick= "deleteComment()") Delete
+                            br
+                            br
+                br
+                br
+
+            p Website made by Usman Iftikhar (CUID 101241220)
+        else 
+            p Strange... You aren't supposed to be here...

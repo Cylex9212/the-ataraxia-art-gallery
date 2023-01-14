@@ -1,0 +1,18 @@
+#galleryImage {
+    width:250px; 
+    height:250px;
+    clip-path: inset(0px 0px 10px 0 round 50px);
+    object-fit: cover;
+    object-position: 25% 25%;
+}
+
+#main{
+    position: relative;
+    top:-150px;
+}
+
+#mainImage {
+    position: relative;
+    top: 25px;
+    left: 10%;
+}
