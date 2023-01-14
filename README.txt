@@ -1,2 +1,3 @@
-Link to the report: https://docs.google.com/document/d/1l_3jS2upMfxBrHd8fvzwM_OOQEVfsAGZg3fyyjwWusM/edit?usp=sharing
-Link to the video: https://youtu.be/3Lr0Xe8zaFk
+Hello there! This is a simple art gallery application I've made using Javascript, named after a story I'm writing "The Ataraxia"!
+
+There's a lot of stuff you can do on this website, although it's fundamentally basic... Perhaps I'll update this thing some day, to make it better!
